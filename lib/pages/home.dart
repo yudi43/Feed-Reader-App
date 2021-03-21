@@ -11,17 +11,32 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 2,
         child: Scaffold(
           appBar: AppBar(
+            backgroundColor: Colors.white,
             bottom: TabBar(
               tabs: [
-                Tab(text: "Headlines"),
-                Tab(text: "Interest Over Time"),
+                Tab(
+                  child: Text(
+                    'Headlines',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
+                Tab(
+                  child: Text(
+                    'Interest Over Time',
+                    style: TextStyle(color: Colors.black),
+                  ),
+                ),
               ],
             ),
-            title: Text('News Reader App'),
+            title: Text(
+              'News Reader App',
+              style: TextStyle(color: Colors.black),
+            ),
           ),
           body: TabBarView(
             children: [
