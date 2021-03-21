@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:demoapp/bloc/headlinesViewBloc.dart';
 import 'package:demoapp/components/shimmerTile.dart';
 import 'package:demoapp/components/singleArticleTile.dart';
@@ -49,70 +50,72 @@ class _HeadlinesViewState extends State<HeadlinesView> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      body: StreamBuilder(
-        builder: (context, snapshot) {
-          return Column(
-            children: [
-              Container(
-                child: Center(
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      top: 10.0,
-                      left: 8.0,
-                      right: 8.0,
-                    ),
-                    child: TextField(
-                      controller: _controller,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Search news",
-                        suffixIcon: IconButton(
-                          onPressed: () => searchArticles(_controller.text),
-                          icon: Icon(Icons.search),
+      body: ConnectivityWidgetWrapper(
+        child: StreamBuilder(
+          builder: (context, snapshot) {
+            return Column(
+              children: [
+                Container(
+                  child: Center(
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: 10.0,
+                        left: 8.0,
+                        right: 8.0,
+                      ),
+                      child: TextField(
+                        controller: _controller,
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Search news",
+                          suffixIcon: IconButton(
+                            onPressed: () => searchArticles(_controller.text),
+                            icon: Icon(Icons.search),
+                          ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
-              Container(
-                  child: Center(
-                      child: SwitchListTile(
-                title: const Text('Auto Refresh'),
-                value: _autorefresh,
-                onChanged: (bool value) {
-                  setState(() {
-                    _autorefresh = value;
-                  });
-                  if (_autorefresh) {
-                    showInSnackBar(
-                        'The app will now fetch data every 30 seconds, if new news article is found then will update the list automatically.');
-                  } else {
-                    showInSnackBar('Auto refresh turned off.');
-                  }
-                  checkForUpdates(_controller.text);
-                },
-                secondary: const Icon(Icons.lightbulb_outline),
-              ))),
-              Expanded(
-                child: snapshot.connectionState == ConnectionState.waiting
-                    ? ListView.builder(
-                        itemCount: 6,
-                        itemBuilder: (context, index) {
-                          return ShimmerTile();
-                        })
-                    : ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (context, index) {
-                          return SingleArticleTile(
-                            article: snapshot.data[index],
-                          );
-                        }),
-              ),
-            ],
-          );
-        },
-        stream: headlinesViewBloc.listOfArticles.stream,
+                Container(
+                    child: Center(
+                        child: SwitchListTile(
+                  title: const Text('Auto Refresh'),
+                  value: _autorefresh,
+                  onChanged: (bool value) {
+                    setState(() {
+                      _autorefresh = value;
+                    });
+                    if (_autorefresh) {
+                      showInSnackBar(
+                          'The app will now fetch data every 30 seconds, if new news article is found then will update the list automatically.');
+                    } else {
+                      showInSnackBar('Auto refresh turned off.');
+                    }
+                    checkForUpdates(_controller.text);
+                  },
+                  secondary: const Icon(Icons.lightbulb_outline),
+                ))),
+                Expanded(
+                  child: snapshot.connectionState == ConnectionState.waiting
+                      ? ListView.builder(
+                          itemCount: 6,
+                          itemBuilder: (context, index) {
+                            return ShimmerTile();
+                          })
+                      : ListView.builder(
+                          itemCount: snapshot.data.length,
+                          itemBuilder: (context, index) {
+                            return SingleArticleTile(
+                              article: snapshot.data[index],
+                            );
+                          }),
+                ),
+              ],
+            );
+          },
+          stream: headlinesViewBloc.listOfArticles.stream,
+        ),
       ),
     );
   }

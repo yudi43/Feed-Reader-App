@@ -30,20 +30,22 @@ class _SingleArticleDetailState extends State<SingleArticleDetail> {
             Container(
               height: 200,
               width: MediaQuery.of(context).size.width,
-              child: Image.network(
-                widget.article.urlToImage,
-                fit: BoxFit.fill,
-                errorBuilder: (BuildContext context, Object exception,
-                    StackTrace stackTrace) {
-                  print(exception);
-                  print(stackTrace);
-                  return Container(
-                    child: Image.network(
-                      "https://www.allianceplast.com/wp-content/uploads/2017/11/no-image.png",
-                    ),
-                  );
-                },
-              ),
+              child: widget.article.urlToImage != null
+                  ? Image.network(
+                      widget.article.urlToImage,
+                      fit: BoxFit.fill,
+                      errorBuilder: (BuildContext context, Object exception,
+                          StackTrace stackTrace) {
+                        print(exception);
+                        print(stackTrace);
+                        return Container(
+                          child: Image.network(
+                            "https://www.allianceplast.com/wp-content/uploads/2017/11/no-image.png",
+                          ),
+                        );
+                      },
+                    )
+                  : Container(),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

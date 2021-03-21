@@ -1,3 +1,4 @@
+import 'package:connectivity_wrapper/connectivity_wrapper.dart';
 import 'package:demoapp/pages/headlines_view.dart';
 import 'package:demoapp/pages/interest_over_time.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,8 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ConnectivityAppWrapper(
+        app: MaterialApp(
       debugShowCheckedModeBanner: false,
       home: DefaultTabController(
         length: 2,
@@ -22,20 +24,23 @@ class _HomeState extends State<Home> {
                 Tab(
                   child: Text(
                     'Headlines',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: Colors.black, fontFamily: "Merriweather-title"),
                   ),
                 ),
                 Tab(
                   child: Text(
                     'Interest Over Time',
-                    style: TextStyle(color: Colors.black),
+                    style: TextStyle(
+                        color: Colors.black, fontFamily: "Merriweather-title"),
                   ),
                 ),
               ],
             ),
             title: Text(
               'News Reader App',
-              style: TextStyle(color: Colors.black),
+              style: TextStyle(
+                  color: Colors.black, fontFamily: "Merriweather-title"),
             ),
           ),
           body: TabBarView(
@@ -46,6 +51,6 @@ class _HomeState extends State<Home> {
           ),
         ),
       ),
-    );
+    ));
   }
 }
