@@ -11,10 +11,13 @@ class RestDatasource {
     "Authorization": "Bearer 0ccb712971d04577b20f6a87ab43d25d",
   };
 
-  Future<dynamic> getHeadlines() async {
+  Future<dynamic> getHeadlines(String query) async {
     // RIGHT NOW WORKING ONLY FOR TRUMP
     String endpoint = 'v2/top-headlines';
-    var queryParameters = {'q': 'trump', 'pageSize': '10'};
+    if (query == '') {
+      query = 'covid';
+    }
+    var queryParameters = {'q': query, 'pageSize': '10'};
     var uri = Uri.https(BASE_URL, endpoint, queryParameters);
     var response = await _netUtil.get(uri, headers: headers);
     return response;

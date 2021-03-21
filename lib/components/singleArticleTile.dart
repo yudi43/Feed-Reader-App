@@ -13,7 +13,6 @@ class _SingleArticleTileState extends State<SingleArticleTile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(top: 8.0),
       child: GestureDetector(
         onTap: () {
           Navigator.push(

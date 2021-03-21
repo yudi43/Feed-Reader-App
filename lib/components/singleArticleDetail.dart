@@ -67,23 +67,27 @@ class _SingleArticleDetailState extends State<SingleArticleDetail> {
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                widget.article.description,
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Merriweather-content"),
-              ),
+              child: widget.article.description == null
+                  ? Text("No Description available.")
+                  : Text(
+                      widget.article.description,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Merriweather-content"),
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
-              child: Text(
-                widget.article.content,
-                style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
-                    fontFamily: "Merriweather-content"),
-              ),
+              child: widget.article.content == null
+                  ? Text("No content available.")
+                  : Text(
+                      widget.article.content,
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "Merriweather-content"),
+                    ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
