@@ -12,6 +12,7 @@ class SingleArticleTile extends StatefulWidget {
 class _SingleArticleTileState extends State<SingleArticleTile> {
   @override
   Widget build(BuildContext context) {
+    DateTime dateData = DateTime.parse(widget.article.publishedAt);
     return Container(
       child: GestureDetector(
         onTap: () {
@@ -59,7 +60,15 @@ class _SingleArticleTileState extends State<SingleArticleTile> {
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Text(
-                    widget.article.publishedAt,
+                    dateData.hour.toString() +
+                        ':' +
+                        dateData.minute.toString() +
+                        '    ' +
+                        dateData.day.toString() +
+                        '/' +
+                        dateData.month.toString() +
+                        '/' +
+                        dateData.year.toString(),
                     style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.bold,
