@@ -16,6 +16,7 @@ class _SingleArticleTileState extends State<SingleArticleTile> {
       child: Card(
         child: Center(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
                 height: 200,
@@ -35,9 +36,25 @@ class _SingleArticleTileState extends State<SingleArticleTile> {
                   },
                 ),
               ),
-              Text(
-                widget.article.title,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.article.title,
+                  style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Merriweather-title"),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  widget.article.publishedAt,
+                  style: TextStyle(
+                      fontSize: 10,
+                      fontWeight: FontWeight.bold,
+                      fontFamily: "Merriweather-title"),
+                ),
               ),
             ],
           ),
