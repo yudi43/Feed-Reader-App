@@ -12,12 +12,22 @@ class RestDatasource {
   };
 
   Future<dynamic> getHeadlines(String query) async {
-    // RIGHT NOW WORKING ONLY FOR TRUMP
     String endpoint = 'v2/top-headlines';
     if (query == '') {
       query = 'covid';
     }
     var queryParameters = {'q': query, 'pageSize': '10'};
+    var uri = Uri.https(BASE_URL, endpoint, queryParameters);
+    var response = await _netUtil.get(uri, headers: headers);
+    return response;
+  }
+
+  Future<dynamic> getEverything(String query) async {
+    String endpoint = 'v2/everything';
+    if (query == '') {
+      query = 'covid';
+    }
+    var queryParameters = {'q': query, 'pageSize': '100'};
     var uri = Uri.https(BASE_URL, endpoint, queryParameters);
     var response = await _netUtil.get(uri, headers: headers);
     return response;

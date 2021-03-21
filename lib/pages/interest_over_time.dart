@@ -1,3 +1,4 @@
+import 'package:demoapp/bloc/headlinesViewBloc.dart';
 import 'package:flutter/material.dart';
 
 class InterestOverTime extends StatefulWidget {
@@ -6,10 +7,13 @@ class InterestOverTime extends StatefulWidget {
 }
 
 class _InterestOverTimeState extends State<InterestOverTime> {
+  HeadlinesViewBloc headlinesViewBloc;
+
   @override
   void initState() {
     super.initState();
-    print("InterestOverTime");
+    headlinesViewBloc = new HeadlinesViewBloc();
+    headlinesViewBloc.getEverythingData('');
   }
 
   @override
