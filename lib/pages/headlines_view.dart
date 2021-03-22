@@ -5,6 +5,7 @@ import 'package:demoapp/bloc/headlinesViewBloc.dart';
 import 'package:demoapp/components/shimmerTile.dart';
 import 'package:demoapp/components/singleArticleTile.dart';
 import 'package:demoapp/data/rest_datasource.dart';
+import 'package:demoapp/pages/interest_over_time.dart';
 import 'package:flutter/material.dart';
 
 class HeadlinesView extends StatefulWidget {
