@@ -59,8 +59,8 @@ class _InterestOverTimeState extends State<InterestOverTime> {
                   Expanded(
                     child: createChart(snapshot.data),
                   ),
-                  Expanded(
-                    child: Text('sometext'),
+                  Container(
+                    height: MediaQuery.of(context).size.height * 0.15,
                   ),
                 ],
               ),

@@ -40,6 +40,7 @@ class _HeadlinesViewState extends State<HeadlinesView> {
       }
       print('Checking for updates...');
       headlinesViewBloc.getHeadlinesAndSink(query);
+      showInSnackBar("Checking for new articles...");
     });
   }
 
@@ -95,7 +96,7 @@ class _HeadlinesViewState extends State<HeadlinesView> {
                     }
                     checkForUpdates(_controller.text);
                   },
-                  secondary: const Icon(Icons.lightbulb_outline),
+                  secondary: const Icon(Icons.refresh),
                 ))),
                 Expanded(
                   child: snapshot.connectionState == ConnectionState.waiting
