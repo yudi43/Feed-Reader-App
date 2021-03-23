@@ -27,48 +27,39 @@ class _InterestOverTimeState extends State<InterestOverTime> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
-      body: Container(
-        child: StreamBuilder(
-          builder: (context, snapshot) {
-            return Container(
-              child: ListView(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Expanded(
-                    child: Center(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                          top: 10.0,
-                          left: 8.0,
-                          right: 8.0,
-                        ),
-                        child: TextField(
-                          controller: _controller,
-                          decoration: InputDecoration(
-                            border: OutlineInputBorder(),
-                            hintText: "Search news",
-                            suffixIcon: IconButton(
-                              onPressed: () => headlinesViewBloc
-                                  .getEverythingData(_controller.text),
-                              icon: Icon(Icons.search),
-                            ),
-                          ),
-                        ),
+      body: StreamBuilder(
+        builder: (context, snapshot) {
+          return ListView(
+            children: [
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.only(
+                    top: 10.0,
+                    left: 8.0,
+                    right: 8.0,
+                  ),
+                  child: TextField(
+                    controller: _controller,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Search news",
+                      suffixIcon: IconButton(
+                        onPressed: () => headlinesViewBloc
+                            .getEverythingData(_controller.text),
+                        icon: Icon(Icons.search),
                       ),
                     ),
                   ),
-                  Expanded(
-                    child: createChart(snapshot.data),
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.15,
-                  ),
-                ],
+                ),
               ),
-            );
-          },
-          stream: headlinesViewBloc.chartsDataController.stream,
-        ),
+              createChart(snapshot.data),
+              Container(
+                height: MediaQuery.of(context).size.height * 0.15,
+              ),
+            ],
+          );
+        },
+        stream: headlinesViewBloc.chartsDataController.stream,
       ),
     );
   }
