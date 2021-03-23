@@ -22,6 +22,7 @@ class HeadlinesViewBloc {
     List<Article> newArticles = [];
     response['articles']
         .forEach((item) => newArticles.add(Article.fromJson(item)));
+    print(newArticles);
     // sink only when:
     // 1. New article has come.
     // 2. No article already.

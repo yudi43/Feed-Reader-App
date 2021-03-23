@@ -105,13 +105,18 @@ class _HeadlinesViewState extends State<HeadlinesView> {
                           itemBuilder: (context, index) {
                             return ShimmerTile();
                           })
-                      : ListView.builder(
-                          itemCount: snapshot.data.length,
-                          itemBuilder: (context, index) {
-                            return SingleArticleTile(
-                              article: snapshot.data[index],
-                            );
-                          }),
+                      : snapshot.data.length == 0
+                          ? Container(
+                              padding: const EdgeInsets.only(top: 30),
+                              child: Text('No data found for this keyword.'),
+                            )
+                          : ListView.builder(
+                              itemCount: snapshot.data.length,
+                              itemBuilder: (context, index) {
+                                return SingleArticleTile(
+                                  article: snapshot.data[index],
+                                );
+                              }),
                 ),
               ],
             );

@@ -26,12 +26,13 @@ class _InterestOverTimeState extends State<InterestOverTime> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Container(
         child: StreamBuilder(
           builder: (context, snapshot) {
             return Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              child: ListView(
+                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Expanded(
                     child: Center(
